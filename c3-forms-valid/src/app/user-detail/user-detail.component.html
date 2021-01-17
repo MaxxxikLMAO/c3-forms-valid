@@ -1,0 +1,24 @@
+
+
+<div *ngIf="user" id="userinfo">
+
+  <div class="userInfo">
+
+    <h3>Id:</h3><label>{{user.id}}</label>
+    <h3>Username:</h3><label>{{user.username | excerpt: 8: "..."}}</label>
+
+  </div>
+
+</div>
+
+
+<form (ngSubmit)="edit()" #form="ngForm">
+  <input name="username" [(ngModel)]="username"  required minlength="4" maxlength="16" [(ngModel)]="username" #usernameEl="ngModel">
+  <div *ngIf="usernameEl.invalid && usernameEl.touched">
+    <p *ngIf="usernameEl.errors.required">Vami zadane jmeno do be kinda neexistujici 😳😳😳</p>
+    <p *ngIf="usernameEl.errors.minlength">Vami zadane jmeno je moc kratke</p>
+    <p *ngIf="usernameEl.errors.maxlength">Vami zadane jmeno je moc dlouhe</p>
+  </div>
+  <button class="btn btn-success" [disabled]="form.invalid">butt</button>
+</form>
+

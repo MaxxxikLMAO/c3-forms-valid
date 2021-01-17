@@ -1,0 +1,17 @@
+<p>Register here:</p>
+
+<form class="registerr" #form="ngForm">
+  <h1 class="form-title text-center text-primary">Create user</h1>
+
+  <input class="form-text" type="text" name="username" placeholder="username" required minlength="4" maxlength="16" [(ngModel)]="username" #usernameEl="ngModel">
+  {{usernameEl.valid}}{{dump(usernameEl.errors)}}
+  <div *ngIf="usernameEl.invalid && usernameEl.touched">
+    <p *ngIf="usernameEl.errors.required">Vami zadane jmeno do be kinda neexistujici 😳😳😳</p>
+    <p *ngIf="usernameEl.errors.minlength">Vami zadane jmeno je moc kratke</p>
+    <p *ngIf="usernameEl.errors.maxlength">Vami zadane jmeno je moc dlouhe</p>
+  </div>
+  <input class="form-text" type="password" name="password" placeholder="password" [(ngModel)]="password">
+  <input class="btn-form" type="submit" (click)="create()" name="submit" value="create" [disabled]="form.invalid">
+ <!--<button (click)="create()" [disabled]="form.invalid">Create</button>-->
+
+</form>
